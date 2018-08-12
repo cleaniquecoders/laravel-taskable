@@ -14,6 +14,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
         parent::setUp();
 
         $this->artisan('vendor:publish', ['--tag' => 'laravel-taskable-config']);
+
+        if(class_exists('CreateTasksTable')) {
+            $this->cleanUp();
+        }
+
         $this->artisan('vendor:publish', ['--tag' => 'laravel-taskable-migrations']);
 
         $this->loadLaravelMigrations(['--database' => 'testbench']);
