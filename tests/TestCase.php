@@ -22,6 +22,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->artisan('migrate', ['--database' => 'testbench']);
     }
 
+    protected function tearDown()
+    {
+        $this->cleanUp();
+        parent::tearDown();
+    }
+
     /**
      * Load Package Service Provider.
      *
@@ -129,20 +135,14 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->assertTrue(method_exists($object, $method));
     }
 
-    protected function tearDown()
-    {
-        $this->cleanUp();
-        parent::tearDown();
-    }
-
     protected function cleanUp()
     {
         collect(glob(database_path('migrations/*.php')))
             ->each(function ($path) {
                 unlink($path);
             });
-        if(file_exists(config_path('taskable.php'))) {
-            unlink(config_path('taskable.php'));    
+        if (file_exists(config_path('taskable.php'))) {
+            unlink(config_path('taskable.php'));
         }
     }
 }

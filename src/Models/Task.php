@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Task extends Model
 {
     use SoftDeletes;
-    
+
     protected $guarded = ['id'];
 
     public function taskable()
