@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTasksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up()
+    {
+        Schema::create(config('taskable.tables.prefix') . 'tasks', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->hashslug();
+            
+            $table->name();
+            $table->description();
+
+            $table->unsignedBigInteger('taskable_id')->index();
+            $table->string('taskable_type');
+            
+            $table->is('done', false);
+            $table->at('done');
+            $table->remarks('done_remarks');
+            
+            $table->standardTime();
+        });
+
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down()
+    {
+        Schema::dropIfExists(config('taskable.tables.prefix') . 'tasks');
+    }
+}
