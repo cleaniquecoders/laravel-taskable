@@ -23,14 +23,17 @@ class TaskService
     /**
      * Create a new task.
      *
-     * task()->create($model, 'Title', 'Description');
+     * task()->create($model);
      *
      * @param object $taskable_type
      *
      * @return \App\Models\Task
      */
-    public function create(Model $model, $title, $description = null)
+    public function create(Model $model)
     {
+        $title = method_exists($model, 'getTaskTitleAttribute') ? $model->task_title : config('taskable.default_task');
+        $description = method_exists($model, 'getTaskDescriptionAttribute') ? $model->task_description : '';
+
         $this->task = config('taskable.models.task')::create([
             'taskable_id'   => $model->id,
             'taskable_type' => fqcn($model),
@@ -52,6 +55,7 @@ class TaskService
      */
     public function markAsDone(Model $model)
     {
-        return $this->task->markAsDone($model->id, fqcn($model));
+        $done_remarks = method_exists($model, 'getDoneRemarksAttribute') ? $model->done_remarks : '-';
+        return config('taskable.models.task')::markAsDone($model, $done_remarks);
     }
 }

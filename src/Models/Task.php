@@ -29,28 +29,15 @@ class Task extends Model
         return $query->where('is_done', $is_done);
     }
 
-    public function scopeMarkAsDone($query, $taskable_id, $taskable_type, $done_remarks = null)
+    public function scopeMarkAsDone($query, Model $model, string $done_remarks)
     {
-        return $query->where('taskable_id', $taskable_id)
-            ->where('taskable_type', $taskable_type)
+        return $query->where('taskable_id', $model->od)
+            ->where('taskable_type', fqcn($model))
             ->isDone(false)
             ->update([
                 'is_done'      => true,
                 'done_at'      => now(),
                 'done_remarks' => $done_remarks,
-            ]);
-    }
-
-    public function scopeMarkAsNotDone($query, $taskable_id, $taskable_type)
-    {
-        return $query
-            ->where('taskable_id', $taskable_id)
-            ->where('taskable_type', $taskable_type)
-            ->isDone()
-            ->update([
-                'is_done'      => false,
-                'done_at'      => null,
-                'done_remarks' => null,
             ]);
     }
 }
