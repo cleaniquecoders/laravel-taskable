@@ -1,16 +1,20 @@
 
-[![Build Status](https://travis-ci.org/cleanique-coders/laravel-taskable.svg?branch=master)](https://travis-ci.org/cleanique-coders/laravel-taskable) [![Latest Stable Version](https://poser.pugx.org/cleanique-coders/laravel-taskable/v/stable)](https://packagist.org/packages/cleanique-coders/laravel-taskable) [![Total Downloads](https://poser.pugx.org/cleanique-coders/laravel-taskable/downloads)](https://packagist.org/packages/cleanique-coders/laravel-taskable) [![License](https://poser.pugx.org/cleanique-coders/laravel-taskable/license)](https://packagist.org/packages/cleanique-coders/laravel-taskable)
+[![Build Status](https://travis-ci.org/cleaniquecoders/laravel-taskable.svg?branch=master)](https://travis-ci.org/cleaniquecoders/laravel-taskable) [![Latest Stable Version](https://poser.pugx.org/cleaniquecoders/laravel-taskable/v/stable)](https://packagist.org/packages/cleaniquecoders/laravel-taskable) [![Total Downloads](https://poser.pugx.org/cleaniquecoders/laravel-taskable/downloads)](https://packagist.org/packages/cleaniquecoders/laravel-taskable) [![License](https://poser.pugx.org/cleaniquecoders/laravel-taskable/license)](https://packagist.org/packages/cleaniquecoders/laravel-taskable)
 
 ## About Your Package
 
-Tell people about your package
+Laravel Taskable allowed you to create tasks for your application.
+
+It can be a lot of business rules and processes which you need to determine, either it's done process or not.
+
+This package help you to automate those checking - but of course, you still can manually mark the task as done.
 
 ## Installation
 
-1. In order to install `cleanique-coders/laravel-taskable` in your Laravel project, just run the *composer require* command from your terminal:
+1. In order to install `cleaniquecoders/laravel-taskable` in your Laravel project, just run the *composer require* command from your terminal:
 
 ```
-$ composer require cleanique-coders/laravel-taskable
+$ composer require cleaniquecoders/laravel-taskable
 ```
 
 2. Then in your `config/app.php` add the following to the providers array:
@@ -39,7 +43,7 @@ $ vendor/bin/phpunit -v --coverage-text --colors=never --stderr
 
 ## Contributing
 
-Thank you for considering contributing to the `cleanique-coders/laravel-taskable`!
+Thank you for considering contributing to the `cleaniquecoders/laravel-taskable`!
 
 ### Bug Reports
 
@@ -51,7 +55,7 @@ Remember, bug reports are created in the hope that others with the same problem 
 
 ## Coding Style
 
-`cleanique-coders/laravel-taskable` follows the PSR-2 coding standard and the PSR-4 autoloading standard. 
+`cleaniquecoders/laravel-taskable` follows the PSR-2 coding standard and the PSR-4 autoloading standard. 
 
 You may use PHP CS Fixer in order to keep things standardised. PHP CS Fixer configuration can be found in `.php_cs`.
 
