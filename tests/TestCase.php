@@ -13,8 +13,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
 
-        $this->artisan('vendor:publish', ['--tag' => 'config']);
-        $this->artisan('vendor:publish', ['--tag' => 'migrations']);
+        $this->artisan('vendor:publish', ['--tag' => 'laravel-taskable-config']);
+        $this->artisan('vendor:publish', ['--tag' => 'laravel-taskable-migrations']);
 
         $this->loadLaravelMigrations(['--database' => 'testbench']);
 
@@ -127,5 +127,22 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function assertHasClassMethod($object, $method)
     {
         $this->assertTrue(method_exists($object, $method));
+    }
+
+    protected function tearDown()
+    {
+        $this->cleanUp();
+        parent::tearDown();
+    }
+
+    protected function cleanUp()
+    {
+        collect(glob(database_path('migrations/*.php')))
+            ->each(function ($path) {
+                unlink($path);
+            });
+        if(file_exists(config_path('taskable.php'))) {
+            unlink(config_path('taskable.php'));    
+        }
     }
 }

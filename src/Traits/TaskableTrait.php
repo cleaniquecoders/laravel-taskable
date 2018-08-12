@@ -10,8 +10,6 @@ trait TaskableTrait
 
     abstract public function getTaskableNameAttribute(): string;
 
-    abstract public function getWorkflowSlugName(): string;
-
     public function getTableName(): string
     {
         if (! isset($this->table)) {
@@ -68,6 +66,6 @@ trait TaskableTrait
 
     public function tasks()
     {
-        return $this->morphMany(config('taskable.models.taskable'), 'taskable');
+        return $this->morphMany(config('taskable.models.task'), 'taskable');
     }
 }

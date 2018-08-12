@@ -15,12 +15,13 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->hashslug();
             
+            $table->unsignedBigInteger('taskable_id')->index();
+            $table->string('taskable_type');
+
+            $table->code('slug');
             $table->name();
             $table->description();
 
-            $table->unsignedBigInteger('taskable_id')->index();
-            $table->string('taskable_type');
-            
             $table->is('done', false);
             $table->at('done');
             $table->remarks('done_remarks');
