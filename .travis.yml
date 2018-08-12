@@ -7,9 +7,5 @@ php:
 before_script:
   - travis_retry composer install --prefer-dist --no-interaction
 
-cache:
-  directories:
-    - vendor
-
 script:
-  - vendor/bin/phpunit  --testdox --verbose
+  - vendor/bin/phpunit --testdox --verbose
