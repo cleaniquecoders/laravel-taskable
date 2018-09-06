@@ -7,7 +7,7 @@ class TaskableTest extends TestCase
     /** @test */
     public function it_has_config_file()
     {
-        $this->assertHasConfig('taskable.php');
+        $this->assertHasConfig('taskable');
     }
 
     /** @test */
