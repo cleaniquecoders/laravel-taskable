@@ -31,7 +31,7 @@ class TaskService
      */
     public function create(Model $model)
     {
-        $title = method_exists($model, 'getTaskTitleAttribute') ? $model->task_title : config('taskable.default_task');
+        $title       = method_exists($model, 'getTaskTitleAttribute') ? $model->task_title : config('taskable.default_task');
         $description = method_exists($model, 'getTaskDescriptionAttribute') ? $model->task_description : '';
 
         $this->task = config('taskable.models.task')::create([
@@ -56,6 +56,7 @@ class TaskService
     public function markAsDone(Model $model)
     {
         $done_remarks = method_exists($model, 'getDoneRemarksAttribute') ? $model->done_remarks : '-';
+
         return config('taskable.models.task')::markAsDone($model, $done_remarks);
     }
 }

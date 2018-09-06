@@ -27,10 +27,10 @@ trait TaskableTrait
         $taskable_columns = isset($this->taskable_columns) ? $this->taskable_columns : [];
 
         $columns = collect($schema->listTableColumns($this->getTableName()))
-            ->reject(function ($column) {
+            ->reject(function($column) {
                 return $column->getNotNull();
             })
-            ->reject(function ($column) {
+            ->reject(function($column) {
                 return in_array($column->getName(), ['id', 'hashslug', 'deleted_at', 'created_at', 'updated_at']);
             });
 

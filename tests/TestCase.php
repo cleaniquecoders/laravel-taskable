@@ -15,7 +15,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->artisan('vendor:publish', ['--tag' => 'laravel-taskable-config']);
 
-        if(class_exists('CreateTasksTable')) {
+        if (class_exists('CreateTasksTable')) {
             $this->cleanUp();
         }
 
@@ -84,7 +84,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function assertTableHasColumns($table, $columns)
     {
-        collect($columns)->each(function ($column) use ($table) {
+        collect($columns)->each(function($column) use ($table) {
             $this->assertTrue(Schema::hasColumn($table, $column));
         });
     }
@@ -106,7 +106,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function assertHasConfig($config)
     {
-        $this->assertFileExists(config_path($config));
+        $this->assertFileExists(config_path($config . '.php'));
     }
 
     /**
@@ -143,7 +143,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function cleanUp()
     {
         collect(glob(database_path('migrations/*.php')))
-            ->each(function ($path) {
+            ->each(function($path) {
                 unlink($path);
             });
         if (file_exists(config_path('taskable.php'))) {
